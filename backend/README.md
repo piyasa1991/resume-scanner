@@ -2,6 +2,41 @@
 
 A Python backend service for analyzing resumes using AI, built with hexagonal architecture principles.
 
+## 🚀 Quick Start with Make Commands
+
+The easiest way to get started is using the Make commands from the project root:
+
+```bash
+# From the project root directory
+make help                    # See all available commands
+make setup                   # Complete setup (frontend + backend)
+make dev                     # Start both frontend and backend servers
+make dev-backend            # Start only the backend server
+make dev-frontend           # Start only the frontend server
+```
+
+### Backend-Specific Make Commands
+
+```bash
+# From the project root directory
+make install-backend        # Install backend dependencies
+make dev-backend            # Start backend development server
+make test-backend           # Run backend tests
+make lint-backend           # Lint backend code
+make clean-backend          # Clean backend cache and artifacts
+```
+
+### Poetry Commands (Backend)
+
+```bash
+# From the project root directory
+make poetry-install         # Install Poetry dependencies
+make poetry-add package=requests     # Add new dependency
+make poetry-add-dev package=pytest   # Add development dependency
+make poetry-update          # Update all dependencies
+make poetry-lock            # Generate lock file
+```
+
 ## Architecture
 
 This backend follows **Hexagonal Architecture** (Ports and Adapters) for clean separation of concerns:
@@ -20,7 +55,7 @@ backend/
 │       ├── repositories/     # Data persistence
 │       └── web/             # Web framework (FastAPI)
 ├── main.py                   # Application entry point
-└── requirements.txt         # Python dependencies
+└── pyproject.toml           # Poetry dependencies
 ```
 
 ## Features
@@ -32,30 +67,60 @@ backend/
 - **RESTful API**: Clean HTTP endpoints for frontend integration
 - **Extensible Architecture**: Easy to add new analysis types or integrations
 
-## Quick Start
+## Setup Instructions
 
-### 1. Install Dependencies
+### Option 1: Using Make Commands (Recommended)
 
 ```bash
+# From the project root
+make setup                   # Complete setup for both frontend and backend
+make dev                     # Start both servers
+```
+
+### Option 2: Manual Backend Setup
+
+#### 1. Install Dependencies
+
+**Using Poetry (Recommended):**
+```bash
 cd backend
+./setup-poetry.sh           # Automated setup script
+# OR manually:
+poetry install
+```
+
+**Using pip (if needed):**
+```bash
+cd backend
+poetry export -f requirements.txt --output requirements.txt --without-hashes
 pip install -r requirements.txt
 ```
 
-### 2. Set Environment Variables
+#### 2. Set Environment Variables
 
 ```bash
 # Create .env file
 echo "OPENAI_API_KEY=your-openai-api-key-here" > .env
 ```
 
-### 3. Run the Server
+#### 3. Run the Server
 
+**Using Make (Recommended):**
 ```bash
-# Development server
-python main.py
+# From project root
+make dev-backend
+```
 
-# Or with uvicorn directly
-uvicorn src.infrastructure.web.fastapi_app:app --reload --host 0.0.0.0 --port 8000
+**Using Poetry:**
+```bash
+cd backend
+poetry run python main.py
+```
+
+**Using pip:**
+```bash
+cd backend
+python main.py
 ```
 
 ### 4. Test the API
@@ -77,6 +142,15 @@ curl -X POST "http://localhost:8000/api/analyze" \
     "mode": "ats"
   }'
 ```
+
+## Service URLs
+
+When running the services:
+
+- **Backend API**: http://localhost:8000
+- **Backend API Docs**: http://localhost:8000/docs
+- **Backend Health Check**: http://localhost:8000/health
+- **Frontend**: http://localhost:5173
 
 ## API Endpoints
 
@@ -148,20 +222,45 @@ The AI analysis prompts are defined in the `AIAnalysisAdapter` class and can be 
 
 ### Running Tests
 
+**Using Make:**
 ```bash
+make test-backend
+```
+
+**Using Poetry:**
+```bash
+cd backend
+poetry run pytest tests/ -v
+```
+
+**Using pip (if needed):**
+```bash
+cd backend
+poetry export -f requirements.txt --output requirements.txt --without-hashes
 pytest tests/ -v
 ```
 
 ### Code Quality
 
+**Using Make:**
 ```bash
-# Format code
+make lint-backend
+```
+
+**Using Poetry:**
+```bash
+cd backend
+poetry run black src/
+poetry run flake8 src/
+poetry run mypy src/
+```
+
+**Using pip (if needed):**
+```bash
+cd backend
+poetry export -f requirements.txt --output requirements.txt --without-hashes
 black src/
-
-# Lint code
 flake8 src/
-
-# Type checking
 mypy src/
 ```
 
@@ -218,6 +317,15 @@ const response = await fetch('http://localhost:8000/api/analyze', {
   body: JSON.stringify({ resume_text, job_description, mode })
 });
 ```
+
+## Poetry Migration
+
+This project now uses Poetry for dependency management. See `POETRY_README.md` for detailed information about:
+
+- Poetry setup and configuration
+- Dependency management commands
+- Virtual environment handling
+- Migration from requirements.txt
 
 ## Contributing
 
