@@ -4,7 +4,7 @@ Infrastructure Adapters - File Parsing Implementation
 
 import re
 from typing import List
-from ...application.ports.resume_analysis_port import FileParserPort
+from ..ports.resume_analysis_port import FileParserPort
 
 
 class FileParserAdapter(FileParserPort):

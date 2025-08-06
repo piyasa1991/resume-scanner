@@ -120,9 +120,9 @@ def create_fastapi_app() -> FastAPI:
     )
     
     # Initialize dependencies (mock for WebContainer)
-    from ..adapters.file_parser_adapter import FileParserAdapter
-    from ..adapters.ai_analysis_adapter import AIAnalysisAdapter
-    from ..repositories.analysis_repository import InMemoryAnalysisRepository
+    from .file_parser_adapter import FileParserAdapter
+    from .ai_analysis_adapter import AIAnalysisAdapter
+    from .analysis_repository import InMemoryAnalysisRepository
     
     file_parser = FileParserAdapter()
     ai_analyzer = AIAnalysisAdapter(api_key=os.getenv("OPENAI_API_KEY"))
@@ -179,7 +179,7 @@ def create_fastapi_app() -> FastAPI:
         """Analyze resume for ATS compatibility or job matching"""
         try:
             # Create mock resume object
-            from ...domain.entities.resume import Resume, ContactInfo, ResumeSection, JobDescription
+            from ..domain.resume import Resume, ContactInfo, ResumeSection, JobDescription
             
             resume = Resume(
                 id=str(uuid.uuid4()),

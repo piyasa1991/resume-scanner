@@ -5,8 +5,8 @@ Infrastructure Adapters - AI Analysis Implementation
 import json
 import re
 from typing import List, Optional, Dict, Any
-from ...application.ports.resume_analysis_port import AIAnalysisPort
-from ...domain.entities.resume import AnalysisMode
+from ..ports.resume_analysis_port import AIAnalysisPort
+from ..domain.resume import AnalysisMode
 
 
 class AIAnalysisAdapter(AIAnalysisPort):

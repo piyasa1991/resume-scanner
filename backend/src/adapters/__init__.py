@@ -1,0 +1,1 @@
+# Adapters package - Implementations for hexagonal architecture 

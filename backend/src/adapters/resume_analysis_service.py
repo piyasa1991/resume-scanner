@@ -8,11 +8,11 @@ from typing import List, Optional
 from ..ports.resume_analysis_port import (
     ResumeAnalysisPort, FileParserPort, AIAnalysisPort, AnalysisRepositoryPort
 )
-from ...domain.entities.resume import (
+from ..domain.resume import (
     Resume, JobDescription, AnalysisResult, AnalysisMode, 
     ContactInfo, ResumeSection
 )
-from ...domain.value_objects.analysis_criteria import ATSCriteria, JobMatchCriteria
+from ..domain.analysis_criteria import ATSCriteria, JobMatchCriteria
 
 
 class ResumeAnalysisService(ResumeAnalysisPort):
