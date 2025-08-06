@@ -86,6 +86,7 @@ make dev                     # Start both servers
 cd backend
 ./setup-poetry.sh           # Automated setup script
 # OR manually:
+poetry config virtualenvs.in-project true
 poetry install
 ```
 

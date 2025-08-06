@@ -50,6 +50,7 @@ MANIFEST
 
 # Poetry
 poetry.lock
+backend/.venv/
 .venv/
 venv/
 ENV/
