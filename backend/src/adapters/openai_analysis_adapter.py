@@ -5,25 +5,23 @@ Infrastructure Adapters - AI Analysis Implementation
 import json
 import re
 from typing import List, Optional, Dict, Any
-from ..ports.resume_analysis_port import AIAnalysisPort
-from ..domain.resume import AnalysisMode
+from src.ports.resume_analysis_port import AIAnalysisPort
+from src.domain.resume import AnalysisMode
+import openai
 
 
-class AIAnalysisAdapter(AIAnalysisPort):
+class OpenAIAnalysisAdapter(AIAnalysisPort):
     """Adapter for AI-powered analysis using OpenAI"""
     
     def __init__(self, api_key: Optional[str] = None):
         self.api_key = api_key
-        # In production, initialize OpenAI client:
-        # import openai
-        # self.client = openai.OpenAI(api_key=api_key)
+        self.client = openai.OpenAI(api_key=api_key)
     
     def analyze_resume_content(self, resume_text: str, analysis_mode: AnalysisMode, 
                              job_description: Optional[str] = None) -> Dict[str, Any]:
         """
         Analyze resume content using AI
-        
-        In production, this would make actual OpenAI API calls:
+        """
         
         if analysis_mode == AnalysisMode.ATS:
             prompt = self._get_ats_analysis_prompt(resume_text)
@@ -40,13 +38,14 @@ class AIAnalysisAdapter(AIAnalysisPort):
         )
         
         return json.loads(response.choices[0].message.content)
-        """
         
+        """
         # Mock implementation for demonstration
         if analysis_mode == AnalysisMode.ATS:
             return self._mock_ats_analysis(resume_text)
         else:
             return self._mock_job_match_analysis(resume_text, job_description or "")
+        """
     
     def extract_keywords(self, text: str) -> List[str]:
         """

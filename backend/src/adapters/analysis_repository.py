@@ -3,8 +3,8 @@ Infrastructure Repositories - Data Persistence Implementation
 """
 
 from typing import Dict, List, Optional
-from ..ports.resume_analysis_port import AnalysisRepositoryPort
-from ..domain.resume import AnalysisResult
+from src.ports.resume_analysis_port import AnalysisRepositoryPort
+from src.domain.resume import AnalysisResult
 
 
 class InMemoryAnalysisRepository(AnalysisRepositoryPort):

@@ -5,14 +5,14 @@ Application Services - Business Logic Implementation
 import uuid
 from datetime import datetime
 from typing import List, Optional
-from ..ports.resume_analysis_port import (
+from src.ports.resume_analysis_port import (
     ResumeAnalysisPort, FileParserPort, AIAnalysisPort, AnalysisRepositoryPort
 )
-from ..domain.resume import (
+from src.domain.resume import (
     Resume, JobDescription, AnalysisResult, AnalysisMode, 
     ContactInfo, ResumeSection
 )
-from ..domain.analysis_criteria import ATSCriteria, JobMatchCriteria
+from src.domain.analysis_criteria import ATSCriteria, JobMatchCriteria
 
 
 class ResumeAnalysisService(ResumeAnalysisPort):
@@ -292,4 +292,4 @@ class ResumeAnalysisService(ResumeAnalysisPort):
                 </ul>
             </div>
         </div>
-        """
+        """ 

@@ -4,7 +4,7 @@ Application Ports - Interfaces for Resume Analysis
 
 from abc import ABC, abstractmethod
 from typing import List, Optional
-from ..domain.resume import Resume, JobDescription, AnalysisResult, AnalysisMode
+from src.domain.resume import Resume, JobDescription, AnalysisResult, AnalysisMode
 
 
 class ResumeAnalysisPort(ABC):
