@@ -58,7 +58,7 @@ lint:
 # Test
 test:
 	@echo "🧪 Running tests..."
-	@cd backend && poetry run pytest tests/ -v
+	@cd backend && poetry install --with dev && poetry run pytest tests/ -v
 	@echo "✅ Tests complete"
 
 # Clean
