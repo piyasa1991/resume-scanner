@@ -65,6 +65,7 @@ test:
 clean:
 	@echo "🧹 Cleaning build artifacts..."
 	@rm -rf frontend/dist
+	@rm -rf frontend/node_modules
 	@rm -rf frontend/node_modules/.vite
 	@rm -rf backend/.venv
 	@cd backend && find . -type d -name "__pycache__" -exec rm -rf {} + 2>/dev/null || true
